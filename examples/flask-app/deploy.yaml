@@ -1,0 +1,15 @@
+server:
+  host: your-server.com
+  user: ubuntu
+  remote_path: /opt/apps/flask-app
+  port: 22
+  # key_file: ~/.ssh/id_rsa  # Optional: uncomment to use SSH key
+
+app:
+  type: flask
+  port: 5000
+  name: flask-app
+  python_version: python3
+  requirements_file: requirements.txt
+  environment_vars:
+    FLASK_ENV: production

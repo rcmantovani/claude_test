@@ -1,0 +1,14 @@
+server:
+  host: your-server.com
+  user: ubuntu
+  remote_path: /opt/apps/streamlit-dashboard
+  port: 22
+  # key_file: ~/.ssh/id_rsa  # Optional: uncomment to use SSH key
+
+app:
+  type: streamlit
+  port: 8501
+  name: streamlit-dashboard
+  python_version: python3
+  requirements_file: requirements.txt
+  environment_vars: {}
