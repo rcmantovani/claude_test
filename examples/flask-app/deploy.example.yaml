@@ -1,0 +1,31 @@
+# Example deployment configuration for Flask app
+# Copy this file to deploy.local.yaml and fill in your actual values
+# NEVER commit deploy.local.yaml or deploy.prod.yaml to git
+
+server:
+  host: your-server.com           # Your server IP or hostname
+  user: ubuntu                     # SSH username
+  remote_path: /opt/apps/myapp    # Remote directory path
+  port: 22                         # SSH port
+  key_file: ~/.ssh/id_rsa         # Path to your SSH private key (optional)
+  # password: your-password        # SSH password (not recommended, use key_file instead)
+
+app:
+  type: flask
+  port: 5000                       # Port for Flask to listen on
+  name: flask-app                  # Service name (used for systemd)
+  python_version: python3          # Python command on remote server
+  requirements_file: requirements.txt
+
+  # Environment variables to pass to your application
+  environment_vars:
+    FLASK_ENV: production
+    # Add any secrets or config your app needs:
+    # DATABASE_URL: postgresql://user:password@host/db
+    # API_KEY: your-api-key
+    # SECRET_KEY: your-flask-secret-key
+
+# Usage:
+# 1. Copy this file: cp deploy.example.yaml deploy.local.yaml
+# 2. Edit deploy.local.yaml with your actual credentials
+# 3. Deploy: app-publisher deploy . --config deploy.local.yaml

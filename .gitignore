@@ -37,6 +37,29 @@ ENV/
 .coverage
 htmlcov/
 
-# Config
+# Config and Secrets - NEVER COMMIT THESE
 *.local.yaml
+*.prod.yaml
+*.production.yaml
+*.staging.yaml
 .env
+.env.local
+.env.production
+.env.staging
+**/secrets/
+**/*secret*
+**/*credential*
+
+# SSH Keys
+*.pem
+*.key
+id_rsa
+id_ed25519
+id_dsa
+*.ppk
+
+# Deployment configs with actual credentials
+deploy.local.yaml
+deploy.prod.yaml
+deploy.production.yaml
+deploy.staging.yaml
