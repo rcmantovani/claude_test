@@ -2,6 +2,8 @@
 
 A simple CLI tool to publish Python Streamlit or Flask applications to a remote server via SSH.
 
+**Cross-Platform:** Works on Linux, macOS, and Windows.
+
 ## Features
 
 - Deploy Streamlit and Flask applications to remote servers
@@ -30,16 +32,38 @@ app-publisher --version
 
 Use the helper script to create a secure configuration:
 
+**Linux/macOS:**
 ```bash
 ./scripts/setup_config.sh
+```
+
+**Windows (PowerShell):**
+```powershell
+.\scripts\setup_config.ps1
+```
+
+**Windows (Command Prompt):**
+```cmd
+scripts\setup_config.bat
 ```
 
 This will guide you through creating a `deploy.local.yaml` file with proper security settings.
 
 ### 2. Test Your Connection
 
+**Linux/macOS:**
 ```bash
 ./scripts/test_connection.sh
+```
+
+**Windows (PowerShell):**
+```powershell
+.\scripts\test_connection.ps1
+```
+
+**Windows (Command Prompt):**
+```cmd
+scripts\test_connection.bat
 ```
 
 ### 3. Deploy Your App
@@ -151,6 +175,8 @@ app:
 
 ## Documentation
 
+- **[QUICKSTART.md](QUICKSTART.md)** - 5-minute quick start guide
+- **[WINDOWS_SETUP.md](WINDOWS_SETUP.md)** - Complete Windows setup guide
 - **[LOCAL_DEPLOYMENT.md](LOCAL_DEPLOYMENT.md)** - Complete guide for local setup and secrets management
 - **[USAGE.md](USAGE.md)** - Detailed usage guide with advanced options
 - **[examples/](examples/)** - Working example applications
@@ -205,8 +231,17 @@ app-publisher deploy . --config deploy.local.yaml
 
 ## Helper Scripts
 
+**Linux/macOS:**
 - `scripts/setup_config.sh` - Interactive configuration setup
 - `scripts/test_connection.sh` - Test SSH connection and server requirements
+
+**Windows (PowerShell):**
+- `scripts/setup_config.ps1` - Interactive configuration setup
+- `scripts/test_connection.ps1` - Test SSH connection and server requirements
+
+**Windows (Batch):**
+- `scripts/setup_config.bat` - Interactive configuration setup
+- `scripts/test_connection.bat` - Test SSH connection and server requirements
 
 ## Troubleshooting
 

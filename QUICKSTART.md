@@ -2,11 +2,14 @@
 
 Get up and running with app-publisher in 5 minutes.
 
+**Note:** This guide uses Linux/macOS commands. For Windows, see [WINDOWS_SETUP.md](WINDOWS_SETUP.md).
+
 ## Prerequisites
 
 - Python 3.7+ on your local machine
 - A remote Linux server with SSH access
 - SSH key for authentication (or you can generate one)
+- **Windows users:** See [WINDOWS_SETUP.md](WINDOWS_SETUP.md) for detailed Windows instructions
 
 ## Step 1: Install (2 minutes)
 

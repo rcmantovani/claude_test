@@ -2,8 +2,34 @@
 
 import os
 import yaml
+from pathlib import Path
 from typing import Optional, Dict, Any
 from dataclasses import dataclass, field
+
+
+def normalize_path(path: Optional[str]) -> Optional[str]:
+    """
+    Normalize file paths for cross-platform compatibility.
+    Expands user home directory and converts to absolute path.
+
+    Args:
+        path: File path to normalize (can be None)
+
+    Returns:
+        Normalized absolute path or None
+    """
+    if path is None:
+        return None
+
+    # Expand user home directory (~)
+    expanded_path = os.path.expanduser(path)
+
+    # Convert to absolute path if it exists, otherwise just return expanded
+    try:
+        return str(Path(expanded_path).resolve())
+    except (OSError, RuntimeError):
+        # If path can't be resolved (e.g., doesn't exist yet), return expanded
+        return expanded_path
 
 
 @dataclass
@@ -40,12 +66,17 @@ class DeployConfig:
         server_data = data.get('server', {})
         app_data = data.get('app', {})
 
+        # Normalize key_file path for cross-platform compatibility
+        key_file = server_data.get('key_file')
+        if key_file:
+            key_file = normalize_path(key_file)
+
         server = ServerConfig(
             host=server_data.get('host', ''),
             user=server_data.get('user', ''),
             remote_path=server_data.get('remote_path', ''),
             port=server_data.get('port', 22),
-            key_file=server_data.get('key_file'),
+            key_file=key_file,
             password=server_data.get('password')
         )
 
@@ -73,6 +104,10 @@ class DeployConfig:
                      key_file: Optional[str] = None,
                      ssh_port: int = 22) -> 'DeployConfig':
         """Create config from CLI arguments."""
+        # Normalize key_file path for cross-platform compatibility
+        if key_file:
+            key_file = normalize_path(key_file)
+
         server = ServerConfig(
             host=host,
             user=user,
